@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "Inter";
+    src: url("/assets/fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    margin: 0;
+    background-color: $background-white;
+    font-family: "Inter";
+}
+
+::-webkit-scrollbar {
+    width: 18px;
+    background-color: $background-white;
+  }
+ 
+  
+  ::-webkit-scrollbar-thumb {
+    background: $primary;
+    border-radius: 50px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+.IconSVG {
+    fill: #525866;
+}
