@@ -14,13 +14,14 @@
 <script setup></script>
 
 <style lang="scss" scoped>
-.pageWrap {
-  height: calc(100% - 64px);
+.pageWrap {     
+  max-height: calc(100% - 64px);
+  overflow: auto;
   display: grid;
   gap: 24px;
   padding: 32px;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
   grid-template-areas:
     "tracker dailyWork highlights"
     "tracker progress highlights"

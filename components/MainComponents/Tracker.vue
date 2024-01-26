@@ -23,14 +23,52 @@
         <img src="../../assets/icons/arrow-down-s-line.svg" />
       </div>
       <div class="tracker--body--main">
-        <div>Aguardando</div>
-        <div>
-          {{ numerosFormatados.hora }} : {{ numerosFormatados.min }} :
-          {{ numerosFormatados.segundo }}
+        <div class="tracker--body--main--text">Aguardando</div>
+        <div class="tracker--body--main--timer">
+          {{ numerosFormatados.hora }}:{{ numerosFormatados.min }}:{{
+            numerosFormatados.segundo
+          }}
         </div>
-        <div @click="iniciarCronometro">btn</div>
-        <div @click="pausarCronometro">pausar</div>
+        <div class="tracker--body--main--functions">
+          <div
+            v-if="showBtn() === 'start' || showBtn() === 'pause'"
+            class="tracker--body--main--functions--btn"
+            @click="iniciarCronometro"
+          >
+            <img src="../../assets/icons/play-fill.svg" /> Iniciar
+          </div>
+          <div
+            v-if="showBtn() === 'counting'"
+            class="tracker--body--main--functions--btn"
+            @click="pausarCronometro"
+          >
+            <img src="../../assets/icons/pause-circle-fill.svg" />Pausar
+          </div>
+          <span
+            v-if="showBtn() === 'counting' || showBtn() === 'pause'"
+            class="divider"
+          />
+          <div
+            v-if="showBtn() === 'counting' || showBtn() === 'pause'"
+            class="tracker--body--main--functions--btn"
+            @click="resetarCronometro"
+          >
+            <img src="../../assets/icons/stop-circle-fill.svg" />Parar
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div class="tracker--bottom">
+      TAREFAS ANTERIORES
+      <TrackerComponentsRecords time="1:23:05">
+        <template #logo><img src="../../assets/icons/loom.svg" /></template>
+        Alinhamento - Comercial</TrackerComponentsRecords
+      >
+      <TrackerComponentsRecords time="3:14:26">
+        <template #logo><img src="../../assets/icons/Evernote.svg" /></template>
+        Evernote App Redesign</TrackerComponentsRecords
+      >
     </div>
   </div>
 </template>
@@ -40,6 +78,7 @@ const horas = ref<number>(0);
 const minutos = ref<number>(0);
 const segundos = ref<number>(0);
 const intervalID = ref();
+const counting = ref<boolean>(false);
 
 const numerosFormatados = computed(() => {
   const segundo = formatarNumero(segundos.value);
@@ -56,6 +95,7 @@ const formatarNumero = (valor: number) => {
 };
 
 const iniciarCronometro = () => {
+  counting.value = true;
   intervalID.value = setInterval(() => {
     segundos.value++;
     if (segundos.value === 60) {
@@ -72,16 +112,42 @@ const iniciarCronometro = () => {
 
 const pausarCronometro = () => {
   clearInterval(intervalID.value);
+  counting.value = false;
 };
 
 const resetarCronometro = () => {
+  pausarCronometro();
   minutos.value = 0;
   segundos.value = 0;
   horas.value = 0;
+  counting.value = false;
+};
+
+const showBtn = () => {
+  if (
+    horas.value == 0 &&
+    minutos.value === 0 &&
+    segundos.value === 0 &&
+    !counting.value
+  ) {
+    return "start";
+  } else if (counting.value) {
+    return "counting";
+  } else if (
+    (horas.value !== 0 || minutos.value !== 0 || segundos.value !== 0) &&
+    !counting.value
+  ) {
+    return "pause";
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+.divider {
+  width: 1px;
+  height: 12px;
+  background-color: #cdd0d5;
+}
 .tracker {
   display: flex;
   flex-direction: column;
@@ -110,7 +176,59 @@ const resetarCronometro = () => {
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      &--text {
+        color: #868c98;
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+
+      &--timer {
+        color: #0a0d14;
+        font-size: 40px;
+        font-weight: 500;
+      }
+
+      &--functions {
+        display: flex;
+        align-items: center;
+        column-gap: 16px;
+
+        &--btn {
+          display: flex;
+          align-items: center;
+          column-gap: 4px;
+        }
+      }
     }
+  }
+
+  &--bottom {
+    display: flex;
+    flex-direction: column;
+    row-gap: 14px;
+    color: #868c98;
+    font-size: 11px;
+    font-weight: 500;
+
+    //&--records {
+    //  display: grid;
+    //  grid-template-columns: auto 1fr auto;
+    //  gap: 10px;
+    //  align-items: center;
+    //
+    //  &--title {
+    //    font-size: 14px;
+    //    font-weight: 400;
+    //    color: #0a0d14;
+    //  }
+    //  .logo {
+    //    border-radius: 48px;
+    //    border: 1px solid #e2e4e9;
+    //    padding: 8px;
+    //  }
+    //}
   }
 }
 .header {
