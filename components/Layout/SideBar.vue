@@ -18,25 +18,25 @@
         <SideBarButton :closed="sideBarClosed" title="Dashboard" url="/">
           <GridIcon class="icon"
         /></SideBarButton>
-        <SideBarButton :closed="sideBarClosed" title="Calendário" url="t">
+        <SideBarButton :closed="sideBarClosed" title="Calendário" url="calendario">
           <calendarIconVue class="icon"
         /></SideBarButton>
-        <SideBarButton :closed="sideBarClosed" title="Descanso" url="t">
+        <SideBarButton :closed="sideBarClosed" title="Descanso" url="default">
           <clockIconVue class="icon"
         /></SideBarButton>
-        <SideBarButton :closed="sideBarClosed" title="Projetos" url="t">
+        <SideBarButton :closed="sideBarClosed" title="Projetos" url="default">
           <folderIconVue class="icon"
         /></SideBarButton>
-        <SideBarButton :closed="sideBarClosed" title="Times" url="t">
+        <SideBarButton :closed="sideBarClosed" title="Times" url="default">
           <groupIconVue class="icon"
         /></SideBarButton>
-        <SideBarButton :closed="sideBarClosed" title="Integrações" url="t">
+        <SideBarButton :closed="sideBarClosed" title="Integrações" url="default">
           <equalizerIconVue class="icon"
         /></SideBarButton>
-        <SideBarButton :closed="sideBarClosed" title="Benefícios" url="t">
+        <SideBarButton :closed="sideBarClosed" title="Benefícios" url="default">
           <starSmileIconVue class="icon"
         /></SideBarButton>
-        <SideBarButton :closed="sideBarClosed" title="Documentos" url="t">
+        <SideBarButton :closed="sideBarClosed" title="Documentos" url="default">
           <fileCludIconVue class="icon"
         /></SideBarButton>
       </div>
@@ -199,7 +199,7 @@ const openAndCloseSideBar = () => {
     line-height: 16px;
     letter-spacing: 0.48px;
     text-transform: uppercase;
-    color: #868c98;
+    color: $light-gray;
     margin-top: 20px;
     margin-bottom: 5px;
     padding: 0px 20px;

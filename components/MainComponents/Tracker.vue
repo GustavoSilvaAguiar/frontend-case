@@ -178,7 +178,7 @@ const showBtn = () => {
       align-items: center;
 
       &--text {
-        color: #868c98;
+        color: $light-gray;
         font-size: 11px;
         font-weight: 500;
         text-transform: uppercase;
@@ -199,6 +199,7 @@ const showBtn = () => {
           display: flex;
           align-items: center;
           column-gap: 4px;
+          cursor: pointer;
         }
       }
     }
@@ -208,27 +209,10 @@ const showBtn = () => {
     display: flex;
     flex-direction: column;
     row-gap: 14px;
-    color: #868c98;
+    color: $light-gray;
     font-size: 11px;
     font-weight: 500;
 
-    //&--records {
-    //  display: grid;
-    //  grid-template-columns: auto 1fr auto;
-    //  gap: 10px;
-    //  align-items: center;
-    //
-    //  &--title {
-    //    font-size: 14px;
-    //    font-weight: 400;
-    //    color: #0a0d14;
-    //  }
-    //  .logo {
-    //    border-radius: 48px;
-    //    border: 1px solid #e2e4e9;
-    //    padding: 8px;
-    //  }
-    //}
   }
 }
 .header {

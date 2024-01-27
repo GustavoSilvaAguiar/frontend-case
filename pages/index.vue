@@ -3,25 +3,27 @@
     <div class="tracker">
       <MainComponentsTracker />
     </div>
-    <div class="dailyWork">teste2</div>
-    <div class="progress">teste3</div>
-    <div class="highlights">teste4</div>
-    <div class="class">teste5</div>
-    <div class="feedback">teste6</div>
+    <div class="dailyWork">
+      <MainComponentsDailyWork />
+    </div>
+    <div class="progress"><MainComponentsProgress /></div>
+    <div class="highlights"><MainComponentsHighlights /></div>
+    <div class="class"><MainComponentsClass /></div>
+    <div class="feedback"><MainComponentsFeedback /></div>
   </div>
 </template>
 
 <script setup></script>
 
 <style lang="scss" scoped>
-.pageWrap {     
+.pageWrap {
   max-height: calc(100% - 64px);
   overflow: auto;
   display: grid;
   gap: 24px;
   padding: 32px;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto auto;
+  //grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas:
     "tracker dailyWork highlights"
     "tracker progress highlights"
@@ -47,22 +49,17 @@
 }
 .dailyWork {
   grid-area: dailyWork;
-  background-color: green;
 }
 .progress {
   grid-area: progress;
-  background-color: blue;
 }
 .highlights {
   grid-area: highlights;
-  background-color: violet;
 }
 .class {
   grid-area: class;
-  background-color: black;
 }
 .feedback {
   grid-area: feedback;
-  background-color: yellow;
 }
 </style>
